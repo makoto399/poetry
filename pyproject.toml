@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "sample-poetry1"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6,<3.9"
+pytest = "^6.2.4"
+seaborn = "^0"
+joblib = "^1"
+asana = "^2.0.0"
+tqdm = "^4.64.1"
+plotly-express = "^0.4.1"
+
+[tool.poetry.dev-dependencies]
+pysen = {version = "0.9.1", extras = ["lint"]}
+pytest = "^6.2.4"
+pytest-cov = "^2.12.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pysen]
+version = "0.9"
+
+# 各種ツール実行の設定
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = false
+mypy_preset = "strict"
+line_length = 120
+py_version = "py37"
+[[tool.pysen.lint.mypy_targets]]
+paths = ["."]
+
+# 対象、除外ファイルの設定
+[tool.pysen.lint.source]
+includes = ["."]
+include_globs = ["**/*.template"]
+excludes = ["third_party/"]
+exclude_globs = ["**/*_grpc.py"]
+
